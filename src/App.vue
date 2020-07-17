@@ -1,18 +1,30 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div v-if="$store.state.board.img">
+      <button class="btn btn-danger" @click="$store.state.board = {}">End Game</button>
+      <Board/>
+    </div>
+    <div v-else>
+      <img alt="Vue logo" src="./assets/logo.png">
+      <HelloWorld msg="Welcome"/>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import HelloWorld from './HelloWorld'
+import Board from "./Board";
 
 export default {
   name: 'App',
   components: {
+    Board,
     HelloWorld
-  }
+  },
+  data() {
+    return {
+    }
+  },
 }
 </script>
 
@@ -24,5 +36,12 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+a, button {
+  color: red;
+}
+button {
+  border: solid;
+  font-size: 20px;
 }
 </style>
