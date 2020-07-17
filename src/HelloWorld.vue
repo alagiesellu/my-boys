@@ -7,17 +7,17 @@
     <h3>Start Game</h3>
     <ul>
       <li>
-        <button @click="start('boys.jpeg')">Salam</button>
+        <button @click="makeTiles('boys.jpeg')">Salam</button>
       </li>
       <li>
-        <button @click="start('boys.jpeg')">Alieu</button>
+        <button @click="makeTiles('boys.jpeg')">Alieu</button>
       </li>
       <li>
-        <button @click="start('boys.jpeg')">Bala</button>
+        <button @click="makeTiles('boys.jpeg')">Bala</button>
       </li>
     </ul>
     <br>
-    <input type="file" @change="onFileChange">
+    <input type="file" @change="onFileChange" accept="image/*">
   </div>
 </template>
 
@@ -28,18 +28,48 @@ export default {
     msg: String
   },
   methods: {
-    start(img) {
-      this.makeTiles(img);
-    },
     onFileChange(e) {
       this.makeTiles( URL.createObjectURL(e.target.files[0]));
     },
     makeTiles(tile) {
+
+      let tiles = [];
+      let shuffled = this.shuffle(['*',1,2,3,4,5,6,7,8]);
+
+      let i = 0, j = 0;
+      while (j < 3)
+      {
+        tiles[j] = [];
+        while (i < 3)
+        {
+          tiles[j][i] = shuffled.pop();
+          i += 1;
+        }
+        i = 0;
+        j += 1;
+      }
+
       this.$store.state.board = {
         img: tile,
-        tiles: new Array(9)
+        tiles: tiles
       };
     },
+    shuffle(arra1) {
+      var ctr = arra1.length, temp, index;
+
+    // While there are elements in the array
+      while (ctr > 0) {
+    // Pick a random index
+        index = Math.floor(Math.random() * ctr);
+    // Decrease ctr by 1
+        ctr--;
+    // And swap the last element with it
+        temp = arra1[ctr];
+        arra1[ctr] = arra1[index];
+        arra1[index] = temp;
+      }
+      return arra1;
+    }
   }
 }
 </script>
