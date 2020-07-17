@@ -29,7 +29,7 @@ export default {
   },
   methods: {
     start(img) {
-      this.makeTiles('/'+img);
+      this.makeTiles(img);
     },
     onFileChange(e) {
       this.makeTiles( URL.createObjectURL(e.target.files[0]));

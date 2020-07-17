@@ -5,7 +5,7 @@
       <Board/>
     </div>
     <div v-else>
-      <img alt="Vue logo" src="./assets/logo.png">
+      <img alt="Vue logo" src="logo.png">
       <HelloWorld msg="Welcome"/>
     </div>
   </div>
